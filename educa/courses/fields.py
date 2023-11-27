@@ -1,6 +1,7 @@
 from typing import Any
-from django.db import models
+
 from django.core.exceptions import ObjectDoesNotExist
+from django.db import models
 from django.db.models import Model
 
 
