@@ -1,2 +1,3 @@
 **/__pycache__/
 educa/db.sqlite3
+.sourcery.yaml
