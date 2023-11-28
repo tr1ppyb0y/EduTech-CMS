@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.template.loader import render_to_string
+from django.conf import settings
 
 from .fields import OrderField
 
@@ -81,6 +83,12 @@ class ItemBase(models.Model):
     def __str__(self) -> str:
         return self.title
 
+    def render(self):
+        return render_to_string(
+            f"{settings.BASE_DIR}\\templates\courses\content\{self._meta.model_name}.html",
+            {"item": self},
+        )
+
 
 class Text(ItemBase):
     content = models.TextField()
@@ -94,5 +102,5 @@ class Image(ItemBase):
     file = models.ImageField(upload_to="images")
 
 
-class Videos(ItemBase):
+class Video(ItemBase):
     url = models.URLField()
